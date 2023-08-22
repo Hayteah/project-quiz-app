@@ -1,5 +1,15 @@
 const question = document.getElementById("question");
 const choices = Array.from(document.getElementsByClassName("choice-text"));
+const progressText = document.getElementById("progressText");
+const scoreText = document.getElementById("score");
+const progressBarFull = document.getElementById("progressBarFull");
+const gameStart = document.getElementById("startGame");
+const gameScreen = document.getElementById("gameScreen");
+const endGameScreen = document.getElementById("endGameScreen");
+const finalScoreText = document.getElementById("endText");
+const getEndScore = document.getElementById("endScore");
+const playButton = document.getElementById("startButton");
+const playAgainBtn = document.getElementById("playAgain");
 
 let currentQuestion = {};
 let acceptingAnswers = false;
@@ -253,7 +263,7 @@ let questions = [
   {
     question: "What is the result of the expression: 5 + '10'?",
     choice1: "15",
-    choice2: "510",
+    choice2: `"510"`,
     choice3: "510",
     choice4: "5 + 10",
     answer: 2,
@@ -461,9 +471,18 @@ let questions = [
     choice4: "Closures can only be used with asynchronous code.",
     answer: 1,
   },
+  {
+    question: "What is the purpose of the 'this' keyword in JavaScript?",
+    choice1: "It is used to define a new variable within a function.",
+    choice2: "It refers to the current HTML document in the browser.",
+    choice3: "It is a reserved keyword with no specific purpose.",
+    choice4:
+      "It refers to the current object or context in which a function is executed.",
+    answer: 4,
+  },
 ];
 
-//CONSTANTS
+//CONSTANTS for use
 
 const CORRECT_BONUS = 10;
 const MAX_QUESTIONS = 50;
@@ -472,14 +491,59 @@ startGame = () => {
   questionCounter = 0;
   score = 0;
   availableQuestions = [...questions];
-  console.log(availableQuestions);
+  //   let gameStart = document.getElementById("startGame");
+  //   let game = document.getElementById("gameScreen");
+
+  //   gameStart.style.display = "block";
+  //   game.style.display = "none";
+
   getNewQuestion();
 };
 
 getNewQuestion = () => {
+  if (questionCounter === 10 && score < 100) {
+    gameScreen.style.display = "none";
+    endGameScreen.style.display = "block";
+
+    finalScoreText.innerText = "You need more practice!!!";
+    getEndScore.innerText = `You scored ${score}`;
+  } else if (questionCounter === 20 && score < 200) {
+    gameScreen.style.display = "none";
+    endGameScreen.style.display = "block";
+
+    finalScoreText.innerText = "There is always room for improvement";
+    getEndScore.innerText = `You scored ${score}`;
+  } else if (questionCounter === 30 && score < 300) {
+    gameScreen.style.display = "none";
+    endGameScreen.style.display = "block";
+
+    finalScoreText.innerText = "Your Javascript skill is on fire";
+    getEndScore.innerText = `You scored ${score}`;
+  } else if (questionCounter === 40 && score < 400) {
+    gameScreen.style.display = "none";
+    endGameScreen.style.display = "block";
+
+    finalScoreText.innerText = "Your Javascript skill is on fire";
+    getEndScore.innerText = `You scored ${score}`;
+  } else if (score === 500) {
+    gameScreen.style.display = "none";
+    endGameScreen.style.display = "block";
+
+    finalScoreText.innerText = "Javascript mastery level";
+    getEndScore.innerText = `You scored ${score}`;
+  }
+
+  // let gameStart = document.getElementById("startGame");
+  // gameStart.style.display = "none";
+
   if (availableQuestions.length === 0 || questionCounter >= MAX_QUESTIONS)
-    return window.location.assign("/end.html");
+    return  gameStart.style.display = "block";
   questionCounter++;
+  progressText.innerText = `Question ${questionCounter}/${MAX_QUESTIONS}`;
+
+  //Update Progress Bar
+  progressBarFull.style.width = `${(questionCounter / MAX_QUESTIONS) * 100}%`;
+
   const questionIndex = Math.floor(Math.random() * availableQuestions.length);
   currentQuestion = availableQuestions[questionIndex];
   question.innerText = currentQuestion.question;
@@ -502,6 +566,10 @@ choices.forEach((choice) => {
 
     const classToApply =
       selectedAnswer == currentQuestion.answer ? "correct" : "incorrect";
+
+    if (classToApply === "correct") {
+      incrementScore(CORRECT_BONUS);
+    }
     selectedChoice.parentElement.classList.add(classToApply);
     setTimeout(() => {
       selectedChoice.parentElement.classList.remove(classToApply);
@@ -509,5 +577,21 @@ choices.forEach((choice) => {
     }, 1000);
   });
 });
-
+incrementScore = (num) => {
+  score += num;
+  scoreText.innerText = score;
+};
 startGame();
+
+playButton.addEventListener("click", () => {
+  gameScreen.style.display = "block";
+  gameStart.style.display = "none";
+  endGameScreen.style.display = "none";
+  startGame();
+});
+
+playAgainBtn.addEventListener("click", () => {
+  gameScreen.style.display = "none";
+  gameStart.style.display = "block";
+  endGameScreen.style.display = "none";
+});
