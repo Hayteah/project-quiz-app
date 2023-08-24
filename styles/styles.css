@@ -48,6 +48,7 @@ h3 {
   align-items: center;
   max-width: 80rem;
   margin: 0 auto;
+  padding: 2rem;
 }
 
 .container > * {
@@ -77,10 +78,9 @@ h3 {
 }
 
 /* BUTTONS */
-
 .btn {
   font-size: 1.8rem;
-  padding: 1rem, 0;
+  padding: 1rem 0;
   width: 20rem;
   text-align: center;
   border: 0.1rem solid #56a5eb;
@@ -93,7 +93,7 @@ h3 {
 .btn:hover {
   cursor: pointer;
   box-shadow: 0 0.4rem 1.4rem 0 rgba(86, 185, 235, 0.5);
-  transform: translateY(-00.1rem);
+  transform: translateY(-0.1rem);
   transition: transform 150ms;
 }
 
@@ -101,4 +101,9 @@ h3 {
   cursor: not-allowed;
   box-shadow: none;
   transform: none;
+}
+
+#endText {
+  font-size: 4rem;
+  color: #56a5eb;
 }
