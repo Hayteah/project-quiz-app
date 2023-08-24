@@ -8,24 +8,17 @@
     <link rel="stylesheet" href="styles/game.css" />
   </head>
   <body>
+    <!--START SCREEN-->
     <section id="startGame">
       <div class="container">
         <div id="home" class="flex-center flex-column">
-          <h1>Javascript Quiz</h1>
+          <h1 class="flex-center flex-column">Javascript Quiz</h1>
           <button class="btn" id="startButton">Play</button>
         </div>
       </div>
     </section>
-    <section id="endGameScreen">
-      <div class="container">
-        <div id="end" class="flex-center flex-column">
-          <p id="endText">Text display here</p>
-          <h1 id="endScore">0</h1>
 
-          <button class="btn" id="playAgain">Play again</button>
-        </div>
-      </div>
-    </section>
+    <!--GAME SCREEN-->
     <section id="gameScreen">
       <div class="container">
         <div id="game" class="justify-center flex-column">
@@ -56,6 +49,18 @@
             <p class="choice-prefix">D</p>
             <p class="choice-text" data-number="4">Choice 4</p>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!--ENDGAME SCREEN-->
+    <section id="endGameScreen">
+      <div class="container">
+        <div id="end" class="flex-center flex-column">
+          <p id="endText">Text display here</p>
+          <h1 id="endScore">0</h1>
+
+          <button class="btn" id="playAgain">Play again</button>
         </div>
       </div>
     </section>
