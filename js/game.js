@@ -600,11 +600,11 @@ class QuizGame {
       this.incrementScore(this.CORRECT_BONUS);
       selectedChoice.parentElement.classList.add(classToApply);
       let audio = new Audio();
-      audio.src = "/sound_correct.mp3";
+      audio.src = "./sound_correct.mp3";
       audio.play();
     } else {
       let audio = new Audio();
-      audio.src = "/sound_incorrect.mp3";
+      audio.src = "./sound_incorrect.mp3";
       audio.play();
       selectedChoice.parentElement.classList.add(classToApply);
     }
