@@ -511,8 +511,8 @@ class QuizGame {
     this.choices.forEach((choice) => {
       choice.addEventListener("click", this.handleChoiceClick.bind(this));
     });
-    //This line uses a loop to set up event listeners on each answer choice button. 
-   // For every button in the this.choices array, the handleChoiceClick function will be executed when the button is clicked. 
+    //This line uses a loop to set up event listeners on each answer choice button.
+    // For every button in the this.choices array, the handleChoiceClick function will be executed when the button is clicked.
     // .bind(this) is used to bind the correct context, ensuring that this.handleChoiceClick refers to the correct method.
   }
 
@@ -579,19 +579,18 @@ class QuizGame {
   }
   // This method handles the player's choice select
 
-  //The function handleChoiceClick is a callback function that's triggered when a user clicks on a choice (an answer option) 
+  //The function handleChoiceClick is a callback function that's triggered when a user clicks on a choice (an answer option)
   //in the quiz. The parameter e represents the event object associated with the click event.
-  
-    handleChoiceClick(e) {
-    
+
+  handleChoiceClick(e) {
     if (!this.acceptingAnswers) return;
 
     this.acceptingAnswers = false;
     const selectedChoice = e.target;
     const selectedAnswer = selectedChoice.dataset["number"];
-    // e.target represents the DOM element that triggered the event, 
+    // e.target represents the DOM element that triggered the event,
     //in this case, the choice (answer option) that the user clicked on. It's assigned to the variable selectedChoice.
-    //retrieves the value of the data-number attribute from the selected choice. 
+    //retrieves the value of the data-number attribute from the selected choice.
     //This attribute likely contains a numerical identifier corresponding to the answer choice.
 
     const classToApply =
@@ -601,11 +600,11 @@ class QuizGame {
       this.incrementScore(this.CORRECT_BONUS);
       selectedChoice.parentElement.classList.add(classToApply);
       let audio = new Audio();
-      audio.src = "../sound_correct.mp3";
+      audio.src = "/sound_correct.mp3";
       audio.play();
     } else {
       let audio = new Audio();
-      audio.src = "../sound_incorrect.mp3";
+      audio.src = "/sound_incorrect.mp3";
       audio.play();
       selectedChoice.parentElement.classList.add(classToApply);
     }
